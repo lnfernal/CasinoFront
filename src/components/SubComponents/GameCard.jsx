@@ -10,6 +10,7 @@ import "../../styles/GameCard.css";
 import {useEffect, useState} from "react";
 import WebFont from 'webfontloader';
 import PercentVariations from "../UI/PercentVariations";
+import HeatIndicator from "../UI/HeatIndicator";
 
 export default function GameCard(props) {
     useEffect(()=> {
@@ -24,7 +25,7 @@ export default function GameCard(props) {
 
     }
     const help = helpFunc();
-    const {gameId, action=register, debug=false}         = props;
+    const {gameId, action=register, debug=false, selectedType="all"}         = props;
     const defaultValues = {
         gameType                        : "bacarra",
         active                   : false,
@@ -102,50 +103,133 @@ export default function GameCard(props) {
         lineHeight: "20px",
     }
 
-    return(
-        <div className="game-tag mat-card table-card shadow" style={backImageStyle}>
-            <div className="table-header" style={backGrad[values.gameType]}>
-                {help.capitalize(values.gameType)}
-                {values.heatIndex > 80? <img src={fire}/>: <></>}
+    const subDataStyle = {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+    }
+
+    if(selectedType !== undefined && selectedType === values.gameType) {
+        return (
+            <div className="game-tag mat-card table-card shadow" style={backImageStyle}>
+                <div className="table-header" style={backGrad[values.gameType]}>
+                    {help.capitalize(values.gameType)}
+                    {values.heatIndex > 80 ? <img src={fire}/> : <></>}
+                </div>
+                <div className="card-details">
+                    <div className={"reference"}>
+                        <div className="highlight-cercle" style={titleStyle}>
+                            <TableBarIcon style={{
+                                minWidth: "auto",
+                            }}/> Ref: #{gameId}
+                        </div>
+                        <div style={titleStyle}>
+                            <div className="highlight-cercle"><GroupsIcon/> {values.playerCount} </div>
+                            <div className="highlight-cercle"><PersonIcon/> {help.randNumber(5, 15)} </div>
+                        </div>
+                    </div>
+                    <div className={"table-data"}>
+                        <div>
+                            <div style={subDataStyle}>
+                                <div><span style={titleStyle}>Ticket minimum:</span>{values.minEntry} $</div>
+                                <div><span
+                                    style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}
+                                </div>
+                                <div><span
+                                    style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
+                                </div>
+                                <div style={{display: "flex"}}><span
+                                    style={titleStyle}>Mise min: </span> {values.minEntry} $ <div
+                                    style={{padding: "0px 10px"}}></div><span
+                                    style={titleStyle}>Mise max: </span> {values.maxEntry} $
+                                </div>
+                            </div>
+                            <HeatIndicator value={values.heatIndex}/>
+                        </div>
+                        <div style={statWrapper}>
+                            <div style={statStyle}>
+                                <span style={{color: "rgb(153, 153, 153)"}}>Last 1h</span>
+                                <PercentVariations value={values.lastHourPnl}/>
+                            </div>
+                            <div style={statStyle}>
+                                <span style={{color: "rgb(153, 153, 153)"}}>Last 1/2h</span>
+                                <PercentVariations value={values.lastHalfPnl}/>
+                            </div>
+                            <div style={statStyle}>
+                                <span style={{color: "rgb(153, 153, 153)"}}>Last 1/4h</span>
+                                <PercentVariations value={values.lastQuarterPnl}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button className={"mat-button"} onClick={() => {
+                            action(gameId)
+                        }}>
+                            S'inscrire
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div className="card-details">
-                <div className={"reference"}>
-                    <div className="highlight-cercle" style={titleStyle}>
-                        <TableBarIcon style={{
-                            minWidth: "auto",
-                        }}/> Ref: #{gameId}
+        )
+    }
+        else if(selectedType === "all"){
+            return(
+                <div className="game-tag mat-card table-card shadow" style={backImageStyle}>
+                    <div className="table-header" style={backGrad[values.gameType]}>
+                        {help.capitalize(values.gameType)}
+                        {values.heatIndex > 80? <img src={fire}/>: <></>}
                     </div>
-                    <div style={titleStyle}>
-                        <div className="highlight-cercle"> <GroupsIcon/> {values.playerCount} </div>
-                        <div className="highlight-cercle"> <PersonIcon/> {help.randNumber(5, 15)} </div>
+                    <div className="card-details">
+                        <div className={"reference"}>
+                            <div className="highlight-cercle" style={titleStyle}>
+                                <TableBarIcon style={{
+                                    minWidth: "auto",
+                                }}/> Ref: #{gameId}
+                            </div>
+                            <div style={titleStyle}>
+                                <div className="highlight-cercle"> <GroupsIcon/> {values.playerCount} </div>
+                                <div className="highlight-cercle"> <PersonIcon/> {help.randNumber(5, 15)} </div>
+                            </div>
+                        </div>
+                        <div className={"table-data"}>
+                            <div>
+                                <div style={subDataStyle}>
+                                    <div><span style={titleStyle}>Ticket minimum:</span>{values.minEntry} $</div>
+                                    <div><span
+                                        style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}
+                                    </div>
+                                    <div><span
+                                        style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
+                                    </div>
+                                    <div style={{display: "flex"}}><span style={titleStyle}>Mise min: </span> {values.minEntry} $ <div
+                                        style={{padding: "0px 10px"}}></div><span
+                                        style={titleStyle}>Mise max: </span> {values.maxEntry} $
+                                    </div>
+                                </div>
+                                <HeatIndicator value={values.heatIndex}/>
+                            </div>
+                            <div style={statWrapper}>
+                                <div style={statStyle}>
+                                    <span style={{color: "rgb(153, 153, 153)"}}>Last 1h</span>
+                                    <PercentVariations value={values.lastHourPnl}/>
+                                </div>
+                                <div style={statStyle}>
+                                    <span style={{color: "rgb(153, 153, 153)"}}>Last 1/2h</span>
+                                    <PercentVariations value={values.lastHalfPnl}/>
+                                </div>
+                                <div style={statStyle}>
+                                    <span style={{color: "rgb(153, 153, 153)"}}>Last 1/4h</span>
+                                    <PercentVariations value={values.lastQuarterPnl}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button className={"mat-button"} onClick={()=>{action(gameId)}}>
+                                S'inscrire
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div className={"table-data"}>
-                    <div><span style={titleStyle}>Ticket minimum:</span>{values.minEntry} $</div>
-                    <div><span style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}</div>
-                    <div><span style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}</div>
-                    <div><span style={titleStyle}>Mise min: </span> {values.minEntry} $ <div style={{padding: "0px 10px"}}></div><span style={titleStyle}>Mise max: </span> {values.maxEntry} $</div>
-                    <div style={statWrapper}>
-                        <div style={statStyle}>
-                            <span style={{color: "rgb(153, 153, 153)"}}>Last 1h</span>
-                            <PercentVariations value={values.lastHourPnl}/>
-                        </div>
-                        <div style={statStyle}>
-                            <span style={{color: "rgb(153, 153, 153)"}}>Last 1/2h</span>
-                            <PercentVariations value={values.lastHalfPnl}/>
-                        </div>
-                        <div style={statStyle}>
-                            <span style={{color: "rgb(153, 153, 153)"}}>Last 1/4h</span>
-                            <PercentVariations value={values.lastQuarterPnl}/>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button className={"mat-button"} onClick={()=>{action(gameId)}}>
-                        S'inscrire
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
+            )
+        }
 }

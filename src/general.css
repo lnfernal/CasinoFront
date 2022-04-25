@@ -100,6 +100,8 @@
     overflow: overlay;
 }
 
+.game_grid::-webkit-scrollbar {display:none;}
+
 .sub-views-wrapper {
     display: flex;
     flex-direction: column;
@@ -115,7 +117,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: 5%;
+    height: 8%;
     grid-gap: 0;
     gap: 0;
     margin: 20px 0;
