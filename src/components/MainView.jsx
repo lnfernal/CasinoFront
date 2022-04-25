@@ -8,6 +8,7 @@ import AvailableGames from "./SubViews/AvailableGames";
 import { useLocation } from 'react-router-dom';
 import {React, useState} from "react";
 import MainFooter from "./MainFooter";
+import LiveGames from "./SubViews/LiveGames";
 
 const MainView = () => {
     const navigate = useNavigate();
@@ -251,7 +252,7 @@ const MainView = () => {
 
     let url = useCurrentPath();
     return (
-        <Background>
+        <Background footer={<MainFooter debug={true}/>}>
             <section className={"header-toolbar"}>
                 <MenuTop/>
                 <div style={infoCardWrapper}>
@@ -285,12 +286,12 @@ const MainView = () => {
                 <Routes>
                     <Route path={"/"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
                     <Route path={"/available-games"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
-                    <Route path={"/live-games"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
+                    <Route path={"/live-games"} element={<LiveGames setPop={setPop} debug={true}/>}/>
                     <Route path={"/historical"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
                 </Routes>
             </div>
             </div>
-            <MainFooter debug={true}/>
+
         </Background>
     )
 }

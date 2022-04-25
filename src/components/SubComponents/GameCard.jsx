@@ -78,7 +78,6 @@ export default function GameCard(props) {
     const titleStyle = {
         color:"#999999",
         fontSize: "0.9rem",
-        marginRight: "5px",
     }
 
     const statWrapper = {
@@ -131,7 +130,7 @@ export default function GameCard(props) {
                     <div className={"table-data"}>
                         <div>
                             <div style={subDataStyle}>
-                                <div><span style={titleStyle}>Ticket minimum:</span>{values.minEntry} $</div>
+                                <div><span style={titleStyle}>Ticket minimum: </span>{values.minEntry} $</div>
                                 <div><span
                                     style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}
                                 </div>

@@ -4,21 +4,21 @@ import { Dropdown } from 'reactjs-dropdown-component';
 
 import GameCard from "../SubComponents/GameCard";
 
-export default function AvailableGames (props) {
+export default function LiveGames (props) {
     const {setPop, debug = false} = props;
     const [gameIdsList, setIdList] = useState([])
     const [selectedGameType, setSelected] = useState("all");
     const help = helpFunc();
 
     useEffect(() => {
-        loadAvailGameList();
+        loadLiveGameList();
     },[])
 
     const generatePopup = (id) => {
         setPop(<GameCard gameId={id}/>)
     }
 
-    const loadAvailGameList = () => {
+    const loadLiveGameList = () => {
         let tempGameIdList = [];
         if(debug){
             const gameNumbers = help.randNumber(1,9);
@@ -101,7 +101,7 @@ export default function AvailableGames (props) {
                     }}
                 />
             </div>
-            <div className="game_grid" style={gameIdsList.length < 4? {overflow: "hidden"}:{} }>
+            <div className="game_grid"  style={gameIdsList.length < 4? {overflow: "hidden"}:{} }>
                 {gameIdsList.length > 0 ? gameIdsList.map(
                     el => {
                         return(
