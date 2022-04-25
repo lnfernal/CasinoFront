@@ -2,10 +2,14 @@ import black from "../../assets/pictures/gameIlus/blackjack.png";
 import bacarra from "../../assets/pictures/gameIlus/bacarra.png";
 import roulette from "../../assets/pictures/gameIlus/roulette.png";
 import fire from "../../assets/pictures/gameIlus/fire.png";
+import PersonIcon from '@mui/icons-material/Person';
+import GroupsIcon from '@mui/icons-material/Groups';
+import TableBarIcon from '@mui/icons-material/TableBar';
 import {helpFunc} from "../../utils/helpFunc";
 import "../../styles/GameCard.css";
 import {useEffect, useState} from "react";
 import WebFont from 'webfontloader';
+import PercentVariations from "../UI/PercentVariations";
 
 export default function GameCard(props) {
     useEffect(()=> {
@@ -39,13 +43,13 @@ export default function GameCard(props) {
     const [values, setValues]               = useState(defaultValues);
     const gameIllus = {bacarra:bacarra, blackjack:black , roulette:roulette};
     const backGrad = {  bacarra: {
-                            background: "linear-gradient(90deg, rgba(0,14,255,0.3) 0%, rgba(0,14,255,0.4) 44%, rgba(0,14,255,0.6) 100%)",
+                            background: "linear-gradient(90deg, rgba(0,14,255,0.1) 0%, rgba(0,14,255,0.4) 44%, rgba(0,14,255,0.6) 100%)",
                         },
                         blackjack: {
-                            background: "linear-gradient(90deg, rgba(14,255,0,0.3) 0%, rgba(14,255,0,0.4) 44%, rgba(14,255,0,0.5998774509803921) 100%)",
+                            background: "linear-gradient(90deg, rgba(14,255,0,0.1) 0%, rgba(14,255,0,0.4) 44%, rgba(14,255,0,0.5998774509803921) 100%)",
                         },
                         roulette: {
-                            background: "linear-gradient(90deg, rgba(255,0,0,0.29735644257703087) 0%, rgba(255,0,0,0.4009978991596639) 44%, rgba(255,0,0,0.5998774509803921) 100%)",
+                            background: "linear-gradient(90deg, rgba(255,0,0,0.1) 0%, rgba(255,0,0,0.4009978991596639) 44%, rgba(255,0,0,0.5998774509803921) 100%)",
                         }
                     };
 
@@ -61,9 +65,9 @@ export default function GameCard(props) {
             localValue.minTime = help.randNumber(300, 3600);
             localValue.nextGame = help.randNumber(300, 1000);
             localValue.renew = help.randNumber(-10, 10);
-            localValue.lastHourPnl = help.randNumber(-10, 10);
-            localValue.lastHalfPnl = help.randNumber(-10, 10);
-            localValue.lastQuarterPnl = help.randNumber(-10, 10);
+            localValue.lastHourPnl = help.randNumber(-10, 10, true);
+            localValue.lastHalfPnl = help.randNumber(-10, 10, true);
+            localValue.lastQuarterPnl = help.randNumber(-10, 10, true);
             localValue.renew = false;
             localValue.heatIndex = help.randNumber(1, 100);
             setValues(localValue);
@@ -73,17 +77,15 @@ export default function GameCard(props) {
     const titleStyle = {
         color:"#999999",
         fontSize: "0.9rem",
-    }
-    const dataStyle = {
-        color: "white",
-        fontSize: "1rem"
+        marginRight: "5px",
     }
 
     const statWrapper = {
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-evenly",
-        alignContent: "center",
+        justifyContent: "space-between",
+        alignContent: "space-between",
+        marginTop: "20px",
     }
     const backImageStyle = {
         backgroundImage: "url(" + gameIllus[values.gameType] + ")",
@@ -97,6 +99,7 @@ export default function GameCard(props) {
         flexDirection: "column",
         alignContent: "center",
         justifyContent: "center",
+        lineHeight: "20px",
     }
 
     return(
@@ -106,36 +109,42 @@ export default function GameCard(props) {
                 {values.heatIndex > 80? <img src={fire}/>: <></>}
             </div>
             <div className="card-details">
-                <span>
-                    <span style={titleStyle}>
-                        Ref:#{gameId}
-                    </span>
-                    <span style={titleStyle}>
-                        <span> {values.playerCount} </span>
-                        <span> {help.randNumber(5, 15)} </span>
-                    </span>
-                </span>
-                <div style={dataStyle}>
+                <div className={"reference"}>
+                    <div className="highlight-cercle" style={titleStyle}>
+                        <TableBarIcon style={{
+                            minWidth: "auto",
+                        }}/> Ref: #{gameId}
+                    </div>
+                    <div style={titleStyle}>
+                        <div className="highlight-cercle"> <GroupsIcon/> {values.playerCount} </div>
+                        <div className="highlight-cercle"> <PersonIcon/> {help.randNumber(5, 15)} </div>
+                    </div>
+                </div>
+                <div className={"table-data"}>
                     <div><span style={titleStyle}>Ticket minimum:</span>{values.minEntry} $</div>
-                    <div><span style={titleStyle}>Duree minimum participation:</span> {help.secToFormatted(values.minTime)}</div>
-                    <div><span style={titleStyle}>Prochain roulement de Bankers:</span> {help.secToFormatted(values.nextGame)}</div>
-                    <div><span style={titleStyle}>Mise min:</span> {values.minEntry} $ <span style={titleStyle}>Mise max:</span> {values.maxEntry} $</div>
+                    <div><span style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}</div>
+                    <div><span style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}</div>
+                    <div><span style={titleStyle}>Mise min: </span> {values.minEntry} $ <div style={{padding: "0px 10px"}}></div><span style={titleStyle}>Mise max: </span> {values.maxEntry} $</div>
                     <div style={statWrapper}>
                         <div style={statStyle}>
-                            <span>Last 1h</span>
-                            <span>{values.lastHourPnl}</span>
+                            <span style={{color: "rgb(153, 153, 153)"}}>Last 1h</span>
+                            <PercentVariations value={values.lastHourPnl}/>
                         </div>
                         <div style={statStyle}>
-                            <span>Last 1/2h</span>
-                            <span>{values.lastHalfPnl}</span>
+                            <span style={{color: "rgb(153, 153, 153)"}}>Last 1/2h</span>
+                            <PercentVariations value={values.lastHalfPnl}/>
                         </div>
                         <div style={statStyle}>
-                            <span>Last 1/4h</span>
-                            <span>{values.lastQuarterPnl}</span>
+                            <span style={{color: "rgb(153, 153, 153)"}}>Last 1/4h</span>
+                            <PercentVariations value={values.lastQuarterPnl}/>
                         </div>
                     </div>
                 </div>
-                <button className={"mat-button"} onClick={()=>{action(gameId)}}/>
+                <div>
+                    <button className={"mat-button"} onClick={()=>{action(gameId)}}>
+                        S'inscrire
+                    </button>
+                </div>
             </div>
         </div>
     )

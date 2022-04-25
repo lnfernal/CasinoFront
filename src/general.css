@@ -1,7 +1,7 @@
 .base{
     height: 100%;
     background-color: #23243A;
-    font: 500 20px / 32px Roboto, "Helvetica Neue", sans-serif;
+    font: 500 20px / 32px Roboto, "Montserrat", sans-serif;
     letter-spacing: normal;
 }
 
@@ -25,12 +25,11 @@
     position: relative;
     padding: 16px;
     border-radius: 4px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .mat-card>:first-child, .mat-card-content>:first-child {
     margin-top: 0;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0 0;
 }
 
 .mat-card>:last-child:not(.mat-card-footer), .mat-card-content>:last-child:not(.mat-card-footer) {
@@ -39,15 +38,17 @@
 }
 
 .mat-button{
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
     font-weight: 500;
     background-color: #292B44;
     color: white;
-    border-color: white;
-    border-radius: 10px;
-    opacity: 0.6;
+    border-color: #ffffff47;
+    border-radius: 9px;
+    border-width: thin;
     width: max-content;
+    padding: 5px 23px;
+    margin: 10px 0;
 }
 
 .mat-icon {
@@ -130,4 +131,12 @@ button {
     right: 0;
     left: 0;
     height: 4.5%;
+}
+
+.highlight-cercle{
+    border: 1px solid #ff000082;
+    border-radius: 20px;
+    padding: 0px 7px;
+    margin-top: 5px;
+    color: rgb(255 255 255)!important;
 }

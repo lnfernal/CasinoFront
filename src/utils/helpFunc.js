@@ -125,8 +125,13 @@ export function helpFunc() {
         return /\d/.test(myString);
     }
 
-    function randNumber(min, max){
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    function randNumber(min, max, random = false){
+        if(!random){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        else{
+            return (Math.random() * (max - min) + min).toFixed(2)
+        }
     }
 
     return {timeSince, isToday, capitalize, diffStrings, secToFormatted, audioToBase64, hasNumber, randNumber};
