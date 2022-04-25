@@ -3,8 +3,9 @@
     color: white;
     border-color: white;
     border-radius: 10px;
-    opacity: 0.6;
     width: 32%;
+    font-family: 'Montserrat';
+    font-weight: 600;
 }
 
 .mat-stroked-button {

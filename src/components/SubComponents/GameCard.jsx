@@ -100,7 +100,7 @@ export default function GameCard(props) {
     }
 
     return(
-        <div className="game-tag mat-card table-card" style={backImageStyle}>
+        <div className="game-tag mat-card table-card shadow" style={backImageStyle}>
             <div className="table-header" style={backGrad[values.gameType]}>
                 {help.capitalize(values.gameType)}
                 {values.heatIndex > 80? <img src={fire}/>: <></>}

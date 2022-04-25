@@ -12,6 +12,7 @@ import MainFooter from "./MainFooter";
 const MainView = () => {
     const navigate = useNavigate();
     const [popup, setPop] = useState(<></>)
+    const [subView, setSubView] = useState("available-games")
     const playerIcon = () => {
         return (
             <svg id="groupe-d_utilisateurs" data-name="groupe-d'utilisateurs" xmlns="http://www.w3.org/2000/svg"
@@ -268,13 +269,16 @@ const MainView = () => {
             <div style={wrapper}>
             <div className="sub-views-wrapper">
                 <div className="nav-wrapper">
-                    <NavButton text="Jeux Disponible" action={() => {
+                    <NavButton text="Jeux Disponible" clicked={subView === "available-games"? true: false} action={() => {
+                        setSubView("available-games")
                         navigate("/available-games")
                     }}/>
-                    <NavButton text="Jeux En Cours" action={() => {
+                    <NavButton text="Jeux En Cours" clicked={subView === "live-games"? true: false} action={() => {
+                        setSubView("live-games")
                         navigate("/live-games")
                     }}/>
-                    <NavButton text="Historique" action={() => {
+                    <NavButton text="Historique" clicked={subView === "historical"? true: false}  action={() => {
+                        setSubView("historical")
                         navigate("/historical")
                     }}/>
                 </div>
