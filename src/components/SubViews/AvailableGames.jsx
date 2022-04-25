@@ -93,6 +93,7 @@ export default function AvailableGames (props) {
                         list: {
                             border: "none",
                             boxShadow: "none",
+                            borderRadius: "0px 0px 20px 20px"
                         },
                         wrapper: {
                             borderRadius: "0px 0px 20px 20px",
