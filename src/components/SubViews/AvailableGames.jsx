@@ -30,6 +30,15 @@ export default function AvailableGames (props) {
         }
     }
 
+    const filterWrapperStyle = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        alignContent: "center",
+    }
+
     const gameList = [
         {
             label: 'Bacarra',
@@ -51,13 +60,43 @@ export default function AvailableGames (props) {
 
     return(
         <div className="game_tab_wrapper">
-            <div>
+            <div style={filterWrapperStyle}>
+                <span style={{color: "white", fontSize: "20px", marginRight: "30px"}}>Filtre</span>
                 <Dropdown
                     name="filter"
-                    title="Filtre"
+                    title="All"
                     list={gameList}
                     onChange={(item, name) => {
                     setSelected(item.value);
+                    }}
+                    styles={{
+                        headerTitle: {
+                            fontSize: "20px",
+                            background: "rgb(44 45 72)",
+                            color: "white",
+                        },
+                        header: {
+                            backgroundColor: "rgb(44 45 72)",
+                            borderRadius: "25px",
+                            border: "transparent"
+                        },
+                        scrollList: {
+                            background: "#23243a",
+                            color: "white",
+                            fontFamily: "Montserrat",
+                        fontWeight: "100",
+                            borderRadius: "0px 0px 15px 15px"
+                        },
+                        listItem: {
+                            fontSize: "20px"
+                        },
+                        list: {
+                            border: "none",
+                            boxShadow: "none",
+                        },
+                        wrapper: {
+                            borderRadius: "0px 0px 20px 20px",
+                        }
                     }}
                 />
             </div>

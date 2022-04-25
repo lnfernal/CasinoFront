@@ -142,3 +142,19 @@ button {
     margin-top: 5px;
     color: rgb(255 255 255)!important;
 }
+
+.dd-wrapper * {
+    fill: rgb(255 255 255)!important;
+}
+
+.dd-list-item:hover{
+    background-color: rgb(219, 0, 0)!important;
+}
+
+.dd-wrapper > button {
+    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+}
+
+.dd-scroll-list::-webkit-scrollbar {
+    display: none;
+}
