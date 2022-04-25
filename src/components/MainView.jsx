@@ -290,7 +290,7 @@ const MainView = () => {
                 </Routes>
             </div>
             </div>
-            <MainFooter/>
+            <MainFooter debug={true}/>
         </Background>
     )
 }
