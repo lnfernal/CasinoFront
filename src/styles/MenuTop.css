@@ -1,0 +1,18 @@
+.top-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    font: 500 15px / 21px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+}
+
+.header-layout {
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    flex-grow: 0.2;
+    display: flex;
+}

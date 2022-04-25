@@ -1,0 +1,14 @@
+.nav_buttons{
+    background-color: #292B44;
+    color: white;
+    border-color: white;
+    border-radius: 10px;
+    opacity: 0.6;
+    width: 32%;
+}
+
+.mat-stroked-button {
+    border: 1px solid currentColor;
+    padding: 0 15px;
+    line-height: 34px;
+}
