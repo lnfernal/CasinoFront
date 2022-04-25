@@ -9,10 +9,11 @@ import { useLocation } from 'react-router-dom';
 import {React, useState} from "react";
 import MainFooter from "./MainFooter";
 import LiveGames from "./SubViews/LiveGames";
+import Popup from "./UI/Popup";
 
 const MainView = () => {
     const navigate = useNavigate();
-    const [popup, setPop] = useState(<></>)
+    const [popup, setPop] = useState(undefined)
     const [subView, setSubView] = useState("available-games")
     const playerIcon = () => {
         return (
@@ -252,47 +253,52 @@ const MainView = () => {
 
     let url = useCurrentPath();
     return (
-        <Background footer={<MainFooter debug={true}/>}>
-            <section className={"header-toolbar"}>
-                <MenuTop/>
-                <div style={infoCardWrapper}>
-                    {
-                        Object.values(cards).map(el => {
-                            return (
-                                <InfoCard {...el}/>
-                            )
-                        })
-                    }
+        <>
+            <Popup setShow={setPop}>{popup}</Popup>
+            <Background footer={<MainFooter debug={true}/>}>
+                <section className={"header-toolbar"}>
+                    <MenuTop/>
+                    <div style={infoCardWrapper}>
+                        {
+                            Object.values(cards).map(el => {
+                                return (
+                                    <InfoCard {...el}/>
+                                )
+                            })
+                        }
+                    </div>
+                </section>
+                <div role="separator" id="mat-divider"
+                     className="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></div>
+                <div style={wrapper}>
+                    <div className="sub-views-wrapper">
+                        <div className="nav-wrapper">
+                            <NavButton text="Jeux Disponible" clicked={subView === "available-games" ? true : false}
+                                       action={() => {
+                                           setSubView("available-games")
+                                           navigate("/available-games")
+                                       }}/>
+                            <NavButton text="Jeux En Cours" clicked={subView === "live-games" ? true : false}
+                                       action={() => {
+                                           setSubView("live-games")
+                                           navigate("/live-games")
+                                       }}/>
+                            <NavButton text="Historique" clicked={subView === "historical" ? true : false}
+                                       action={() => {
+                                           setSubView("historical")
+                                           navigate("/historical")
+                                       }}/>
+                        </div>
+                        <Routes>
+                            <Route path={"/"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
+                            <Route path={"/available-games"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
+                            <Route path={"/live-games"} element={<LiveGames setPop={setPop} debug={true}/>}/>
+                            <Route path={"/historical"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
+                        </Routes>
+                    </div>
                 </div>
-            </section>
-            <div role="separator" id="mat-divider"
-                 className="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></div>
-            <div style={wrapper}>
-            <div className="sub-views-wrapper">
-                <div className="nav-wrapper">
-                    <NavButton text="Jeux Disponible" clicked={subView === "available-games"? true: false} action={() => {
-                        setSubView("available-games")
-                        navigate("/available-games")
-                    }}/>
-                    <NavButton text="Jeux En Cours" clicked={subView === "live-games"? true: false} action={() => {
-                        setSubView("live-games")
-                        navigate("/live-games")
-                    }}/>
-                    <NavButton text="Historique" clicked={subView === "historical"? true: false}  action={() => {
-                        setSubView("historical")
-                        navigate("/historical")
-                    }}/>
-                </div>
-                <Routes>
-                    <Route path={"/"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
-                    <Route path={"/available-games"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
-                    <Route path={"/live-games"} element={<LiveGames setPop={setPop} debug={true}/>}/>
-                    <Route path={"/historical"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
-                </Routes>
-            </div>
-            </div>
-
-        </Background>
+            </Background>
+        </>
     )
 }
 export default MainView;

@@ -15,7 +15,7 @@ export default function AvailableGames (props) {
     },[])
 
     const generatePopup = (id) => {
-        setPop(<GameCard gameId={id}/>)
+        setPop(<GameCard gameId={id} debug={true}/>)
     }
 
     const loadAvailGameList = () => {
@@ -105,7 +105,7 @@ export default function AvailableGames (props) {
                 {gameIdsList.length > 0 ? gameIdsList.map(
                     el => {
                         return(
-                            <GameCard gameId={el} action={generatePopup} debug={debug} selectedType={selectedGameType}/>
+                            <GameCard gameId={el} action={generatePopup} debug={debug} selectedType={selectedGameType} setPop={setPop}/>
                         )
                     }
                 ): <></>}

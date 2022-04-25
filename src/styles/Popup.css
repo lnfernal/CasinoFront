@@ -1,0 +1,124 @@
+.popup {
+    align-items: stretch;
+    background-color: var(--white);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    height: -moz-fit-content;
+    height: fit-content;
+    left: auto;
+    right: auto;
+    position: relative;
+    margin: 0 auto;
+    top: 25%;
+    width: 90%;
+    height: 51%;
+    left: 24%;
+    z-index: 21;
+    flex-wrap: wrap;
+    padding: 20px 50px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-generic{
+    position: absolute;
+    margin:unset;
+    left: 5%;
+    font: 500 20px / 32px Roboto, "Montserrat", sans-serif;
+}
+
+.dark_overlay {
+    background-color: #0000004c;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.generic{
+    height: 100vh;
+    left: 0;
+    width:100vw;
+}
+
+.popup .popup_col {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: stretch;
+}
+
+.popup .inputVal {
+    width: 100%!important;
+}
+.popup .inputFrame {
+    width: 100%!important;
+}
+.popup .text-input {
+    width: -webkit-fill-available;
+    flex: 0 0 48%;
+    margin: 5px 10px;
+}
+
+.popup .dropdown{
+    width: 100%;
+    margin: 0 auto;
+    flex: 0 0 48%;
+}
+
+.popup .react-switch-label {
+    margin: 10px 5px;
+}
+
+.popup .button-row{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.popup .button {
+    margin-top: 0px;
+    border-radius: 10px;
+}
+
+.popup .flex-row-9 {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 5%;
+    left: 14%;
+    z-index: 50;
+}
+
+.popup .inputDisabled{
+    background: var(--black80);
+}
+
+.popup .col-1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: stretch;
+}
+
+.col-center {
+    width: 23%!important;
+    left: -8%!important;
+    top: 20%;
+}
+.popup-wrapper{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    display: block;
+    overflow: hidden;
+}

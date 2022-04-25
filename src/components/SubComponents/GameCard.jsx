@@ -78,6 +78,7 @@ export default function GameCard(props) {
     const titleStyle = {
         color:"#999999",
         fontSize: "0.9rem",
+        marginRight: "5px"
     }
 
     const statWrapper = {
@@ -113,7 +114,7 @@ export default function GameCard(props) {
         return (
             <div className="game-tag mat-card table-card shadow" style={backImageStyle}>
                 <div className="table-header" style={backGrad[values.gameType]}>
-                    {help.capitalize(values.gameType)}
+                    <span className="titleStyle">{help.capitalize(values.gameType)}</span>
                     {values.heatIndex > 80 ? <img src={fire}/> : <></>}
                 </div>
                 <div className="card-details">
@@ -131,7 +132,7 @@ export default function GameCard(props) {
                     <div className={"table-data"}>
                         <div>
                             <div style={subDataStyle}>
-                                <div><span style={titleStyle}>Ticket minimum: </span>{values.minEntry} $</div>
+                                <div><span style={titleStyle}>Ticket minimum: </span>{values.minEntry} €</div>
                                 <div><span
                                     style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}
                                 </div>
@@ -139,9 +140,9 @@ export default function GameCard(props) {
                                     style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
                                 </div>
                                 <div style={{display: "flex"}}><span
-                                    style={titleStyle}>Mise min: </span> {values.minEntry} $ <div
+                                    style={titleStyle}>Mise min: </span> {values.minEntry} € <div
                                     style={{padding: "0px 10px"}}></div><span
-                                    style={titleStyle}>Mise max: </span> {values.maxEntry} $
+                                    style={titleStyle}>Mise max: </span> {values.maxEntry} €
                                 </div>
                             </div>
                             <HeatIndicator value={values.heatIndex}/>
