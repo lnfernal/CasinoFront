@@ -44,7 +44,7 @@ export default function GameCard(props) {
     const [values, setValues]               = useState(defaultValues);
     const gameIllus = {bacarra:bacarra, blackjack:black , roulette:roulette};
     const backGrad = {  bacarra: {
-                            background: "linear-gradient(90deg, rgba(0,14,255,0.1) 0%, rgba(0,14,255,0.4) 44%, rgba(0,14,255,0.6) 100%)",
+                            background: "linear-gradient(90deg,rgba(169 0 255 / 0.1) 0%, rgba(169 0 255 / 0.4) 44%, rgb(169 0 255 / 60%) 100%)",
                         },
                         blackjack: {
                             background: "linear-gradient(90deg, rgba(14,255,0,0.1) 0%, rgba(14,255,0,0.4) 44%, rgba(14,255,0,0.5998774509803921) 100%)",
