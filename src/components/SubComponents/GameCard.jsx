@@ -91,6 +91,7 @@ export default function GameCard(props) {
         backgroundImage: "url(" + gameIllus[values.gameType] + ")",
         backgroundRepeat: "no-repeat",
         justifySelf: "flex-start",
+        backgroundPositionY: "-30px",
         backgroundSize: "104%",
     }
 
