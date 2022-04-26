@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 export function helpFunc() {
     function timeSince(date) {
 
@@ -134,5 +135,26 @@ export function helpFunc() {
         }
     }
 
-    return {timeSince, isToday, capitalize, diffStrings, secToFormatted, audioToBase64, hasNumber, randNumber};
+    var getDaysArray = function(s,e) {for(var a=[],d=new Date(s);d<=e;d.setDate(d.getDate()+1)){ a.push(new Date(d));}return a;};
+    function getDaysList (startD, endD){
+        var daylist = getDaysArray(startD,endD);
+        var formatedList = []
+        daylist.map((v)=>v.toISOString().slice(0,10)).join("")
+        daylist.forEach(date => {
+            formatedList.push(format(date, "dd.MM"));
+        })
+        return formatedList;
+    }
+
+    function getSpecDate(date, param, type = "day"){
+        if(type === "day"){
+            return new Date().setDate(date.getDate() + param);
+        }
+        else if(type === "hour"){
+            date = new Date(date)
+            return new Date(date.setHours(date.getHours() + param))
+        }
+    }
+
+    return {timeSince, isToday, capitalize, diffStrings, secToFormatted, audioToBase64, hasNumber, randNumber, getDaysList, getSpecDate};
 }

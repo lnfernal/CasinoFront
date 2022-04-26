@@ -10,11 +10,13 @@ import {React, useState} from "react";
 import MainFooter from "./MainFooter";
 import LiveGames from "./SubViews/LiveGames";
 import Popup from "./UI/Popup";
+import HistoricView from "./SubViews/HistoricView";
 
 const MainView = () => {
     const navigate = useNavigate();
     const [popup, setPop] = useState(undefined)
     const [subView, setSubView] = useState("available-games")
+
     const playerIcon = () => {
         return (
             <svg id="groupe-d_utilisateurs" data-name="groupe-d'utilisateurs" xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +253,7 @@ const MainView = () => {
         return location
     }
 
-    let url = useCurrentPath();
+    let url = useCurrentPath().pathname.split("/")[1];
     return (
         <>
             <Popup setShow={setPop}>{popup}</Popup>
@@ -273,17 +275,17 @@ const MainView = () => {
                 <div style={wrapper}>
                     <div className="sub-views-wrapper">
                         <div className="nav-wrapper">
-                            <NavButton text="Jeux Disponible" clicked={subView === "available-games" ? true : false}
+                            <NavButton text="Jeux Disponible" clicked={url === "available-games" || url === ""? true : false}
                                        action={() => {
                                            setSubView("available-games")
                                            navigate("/available-games")
                                        }}/>
-                            <NavButton text="Jeux En Cours" clicked={subView === "live-games" ? true : false}
+                            <NavButton text="Jeux En Cours" clicked={url === "live-games" ? true : false}
                                        action={() => {
                                            setSubView("live-games")
                                            navigate("/live-games")
                                        }}/>
-                            <NavButton text="Historique" clicked={subView === "historical" ? true : false}
+                            <NavButton text="Historique" clicked={url === "historical"? true : false}
                                        action={() => {
                                            setSubView("historical")
                                            navigate("/historical")
@@ -293,7 +295,7 @@ const MainView = () => {
                             <Route path={"/"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
                             <Route path={"/available-games"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
                             <Route path={"/live-games"} element={<LiveGames setPop={setPop} debug={true}/>}/>
-                            <Route path={"/historical"} element={<AvailableGames setPop={setPop} debug={true}/>}/>
+                            <Route path={"/historical"} element={<HistoricView setPop={setPop} debug={true}/>}/>
                         </Routes>
                     </div>
                 </div>
