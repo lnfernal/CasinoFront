@@ -15,7 +15,7 @@ export default function LiveGames (props) {
     },[])
 
     const generatePopup = (id) => {
-        setPop(<GameCard gameId={id}/>)
+        setPop(<GameCard gameId={id} debug={true} popup={true}/>)
     }
 
     const loadLiveGameList = () => {

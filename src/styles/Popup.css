@@ -10,15 +10,22 @@
     right: auto;
     position: relative;
     margin: 0 auto;
-    top: 25%;
+    top: 15%;
     width: 100%;
-    height: 51%;
+    height: 60%;
     left: 24%;
     z-index: 21;
     flex-wrap: nowrap;
     align-content: center;
     align-items: center;
     justify-content: center;
+}
+.popup > .game-tag > .card-details > .table-data .data-row:first-child{
+    height: 74%;
+}
+
+.popup > .game-tag > .card-details > .table-data{
+    height: 70%;
 }
 
 .popup-generic{
@@ -121,3 +128,14 @@
     display: block;
     overflow: hidden;
 }
+
+.popup > .game-tag{
+    width: -webkit-fill-available;
+}
+
+.popup > .game-tag > .card-details > * > .mat-button{
+    background-color: red;
+    font-weight: 900;
+}
+
+

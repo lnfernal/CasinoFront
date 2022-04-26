@@ -87,7 +87,50 @@
     min-width: 50px;
     margin: 0 5px;
 }
+
 .titleStyle {
     -webkit-text-stroke-width: 0.2px;
     -webkit-text-stroke-color: black;
 }
+
+.banker-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-height: 17vh;
+    background-color: #373758;
+    padding: 8px 20px 8px 8px;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+.banker-wrapper{
+    overflow: scroll;
+    margin-right: 10px;
+}
+
+.banker-rows{
+    font-size: 0.8em;
+    line-height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: -webkit-fill-available;
+}
+
+.bet-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.banker-list-wrapper::-webkit-scrollbar {display:none;}
+.banker-wrapper::-webkit-scrollbar {display:none;}

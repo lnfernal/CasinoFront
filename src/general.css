@@ -170,3 +170,17 @@ button {
 .dd-scroll-list::-webkit-scrollbar {
     display: none;
 }
+.input-container {
+    position: relative;
+    float: left;
+}
+
+.input-container:after {
+    position: absolute;
+    right: 0px;
+    content: ' €';
+    color: black;
+    right: 10px;
+    top: 1px;
+}
+

@@ -11,6 +11,8 @@ import {useEffect, useState} from "react";
 import WebFont from 'webfontloader';
 import PercentVariations from "../UI/PercentVariations";
 import HeatIndicator from "../UI/HeatIndicator";
+import Scrollbars from "react-custom-scrollbars-2";
+import Input from "../UI/Input";
 
 export default function GameCard(props) {
     useEffect(()=> {
@@ -25,11 +27,12 @@ export default function GameCard(props) {
 
     }
     const help = helpFunc();
-    const {gameId, action=register, debug=false, selectedType="all"}         = props;
+    const {gameId, action=register, popup=false, debug=false, selectedType="all"}         = props;
     const defaultValues = {
         gameType                        : "bacarra",
         active                   : false,
         playerCount                   : "0",
+        bankersList                   : [],
         password                    : '',
         minEntry   : 0,
         maxEntry                 : 0,
@@ -42,6 +45,7 @@ export default function GameCard(props) {
         heatIndex : 0,
     };
     const [values, setValues]               = useState(defaultValues);
+    const [betSum, setSum] = useState(0);
     const gameIllus = {bacarra:bacarra, blackjack:black , roulette:roulette};
     const backGrad = {  bacarra: {
                             background: "linear-gradient(90deg,rgba(169 0 255 / 0.1) 0%, rgba(169 0 255 / 0.4) 44%, rgb(169 0 255 / 60%) 100%)",
@@ -61,6 +65,13 @@ export default function GameCard(props) {
             localValue.gameType = games[help.randNumber(0,games.length-1)]
             localValue.active = false;
             localValue.playerCount = help.randNumber(50, 100);
+            let bankersCount = help.randNumber(5, 30);
+            let localBankerList = [];
+            for(let i= 0; i < bankersCount; i++){
+                let index = i + 1;
+                localBankerList.push(index+". Banker"+help.randNumber(1000, 5000))
+            }
+            localValue.bankersList = localBankerList;
             localValue.minEntry = help.randNumber(50, 100);
             localValue.maxEntry = help.randNumber(101, 5000);
             localValue.minTime = help.randNumber(300, 3600);
@@ -110,6 +121,65 @@ export default function GameCard(props) {
         alignItems: "flex-start",
     }
 
+    const bankerList = (list) => {
+        return(
+            <div className="banker-list-wrapper">
+                <span style={{
+                    fontWeight: "600"
+                }}>Liste d'attente</span>
+                <CustomScrollbars>
+                    <div className="banker-wrapper">
+                        {
+                            list.map(el => {
+                                let banker = el.split(".")
+                                return (
+                                    <div className="banker-rows">
+                                        <span>{banker[0]}.</span>
+                                        <span style={{color: "#ffffff96"}}>{banker[1]}</span>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </CustomScrollbars>
+            </div>
+        )
+    }
+
+    const renderTrack = ({ style, ...props }) => {
+        const enhancedStyle = {
+            ...style,
+            right: 6,
+            bottom: 2,
+            top: 2,
+            borderRadius: 3,
+            backgroundColor: "black",
+            width: "2px"
+        };
+
+        return <div style={enhancedStyle} {...props} />;
+    };
+
+    const renderThumb = ({ style, ...props }) => {
+        const thumbStyle = {
+            borderRadius: 6,
+            backgroundColor: "rgb(255,255,255)",
+            width: "10px",
+            left: "-4px"
+        };
+        return <div style={{ ...style, ...thumbStyle }} {...props} />;
+    };
+
+    const CustomScrollbars = (props) => (
+        <Scrollbars
+            renderThumbHorizontal={renderThumb}
+            renderThumbVertical={renderThumb}
+            renderTrackVertical={renderTrack}
+            thumbSize={30}
+            {...props}
+        />
+    );
+
     if((selectedType !== undefined && selectedType === values.gameType)|| selectedType === "all") {
         return (
             <div className="game-tag mat-card table-card shadow" style={backImageStyle}>
@@ -126,11 +196,11 @@ export default function GameCard(props) {
                         </div>
                         <div style={titleStyle}>
                             <div className="highlight-cercle"><GroupsIcon/> {values.playerCount} </div>
-                            <div className="highlight-cercle"><PersonIcon/> {help.randNumber(5, 15)} </div>
+                            <div className="highlight-cercle"><PersonIcon/> {values.bankersList.length} </div>
                         </div>
                     </div>
-                    <div className={"table-data"}>
-                        <div>
+                    <div className={"table-data"} style={popup? {marginTop: "10px"}:{}}>
+                        <div className="data-row">
                             <div style={subDataStyle}>
                                 <div><span style={titleStyle}>Ticket minimum: </span>{values.minEntry} €</div>
                                 <div><span
@@ -139,12 +209,21 @@ export default function GameCard(props) {
                                 <div><span
                                     style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
                                 </div>
-                                <div style={{display: "flex"}}><span
-                                    style={titleStyle}>Mise min: </span> {values.minEntry} € <div
-                                    style={{padding: "0px 10px"}}></div><span
-                                    style={titleStyle}>Mise max: </span> {values.maxEntry} €
+                                {popup?
+                                    <div className="bet-wrapper">
+                                        <span>Ma mise</span>
+                                        <Input defaultValue={betSum} name="bet" onChange={(event) => {setSum(event.target.value)}} symbol={"€"}/>
+                                    </div>
+                                :<></>}
+                                <div style={{display: "flex"}}>
+                                    <span style={titleStyle}>Mise min: </span>
+                                    {values.minEntry} €
+                                    <div style={{padding: "0px 10px"}}></div>
+                                    <span style={titleStyle}>Mise max: </span>
+                                    {values.maxEntry} €
                                 </div>
                             </div>
+                            {popup? bankerList(values.bankersList):<></>}
                             <HeatIndicator value={values.heatIndex}/>
                         </div>
                         <div style={statWrapper}>
