@@ -20,6 +20,10 @@ export default function Graphics(props){
                 position: 'bottom',
                 labels: {
                     usePointStyle: true,
+                    font: {
+                        family: "Montserrat",
+                        weight: "900"
+                    }
                 }
             },
             title: {
@@ -29,8 +33,44 @@ export default function Graphics(props){
                 font: {size:20,
                     family:'Poppins'},
                 color:'#6a6b72',
+            },
+            tooltip: {
+                bodyFont: {
+                    family: "Montserrat",
+                    weight: "900"
+                },
+                titleFont: {
+                    family: "Montserrat",
+                    weight: "900"
+                }
             }
         },
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                },
+                ticks: {
+                    font: {
+                        size: 12,
+                        family: "Montserrat",
+                        weight: "900"
+                    }
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                },
+                ticks: {
+                    font: {
+                        size: 12,
+                        family: "Montserrat",
+                        weight: "900"
+                    }
+                }
+            }
+        }
 
     };
     const data = (days, historic) => {
@@ -41,7 +81,9 @@ export default function Graphics(props){
                     label: 'Gains',
                     data: historic,
                     fill: true,
-                    backgroundColor: 'rgba(69,255,177,0.53)',
+                    backgroundColor: 'rgba(45,255,0,0.44)',
+                    borderColor: "rgb(45,255,0)",
+                    borderWidth: 3,
                     lineTension: 0.3,
                     radius: 4
                 }
