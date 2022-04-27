@@ -97,9 +97,9 @@
 .popup .flex-row-9 {
     display: flex;
     justify-content: flex-end;
-    position: relative;
-    top: 5%;
-    left: 14%;
+    position: absolute;
+    top: 0%;
+    left: 95%;
     z-index: 50;
 }
 
@@ -129,13 +129,91 @@
     overflow: hidden;
 }
 
-.popup > .game-tag{
+.popup .game-tag{
     width: -webkit-fill-available;
+    z-index: 50;
 }
 
-.popup > .game-tag > .card-details > * > .mat-button{
+.popup > .mat-button{
     background-color: red;
     font-weight: 900;
 }
 
+#bets{
+    background-color: #2a2a47;
+    border-radius: 10px;
+}
 
+.pnl-wrapper{
+    height: -webkit-fill-available;
+    width: 30%;
+    max-width: max-content;
+    opacity: 1;
+    right: 0;
+    transition: width 1s cubic-bezier(0.02, 1.11, 0.26, 0.93), opacity 1s, right 1s;
+    position: relative;
+    overflow: scroll;
+    background-color: #2a2a47;
+    border-radius: 0 5px 5px 0;
+}
+
+.closed{
+    width: 0px;
+    opacity: 0;
+    right: 20%;
+    transition: width 1s cubic-bezier(0.02, 1.11, 0.26, 0.93), opacity 0.5s, right 1s;
+}
+
+.white-indicator{
+    padding: 5px 20px;
+    border: 1px solid #ffffff47;
+    border-radius: 20px;
+    margin-right: 10px;
+    color: black;
+    background-color: white;
+    font-weight: 900;
+}
+
+.pnl-wrapper::-webkit-scrollbar {display:none;}
+
+.pnl-wrapper .scroll-bar{
+    height: 80%;
+    right: 10px;
+    top: 20%;
+    background-color: rgb(255 255 255 / 35%);
+    width: 1px;
+}
+
+.pnl-wrapper .scroll-thumb{
+    margin-left: -4px;
+    background-color: rgb(255 255 255);
+}
+
+.popup .stats-wrapper {
+    display: none;
+}
+
+.popup .table-header{
+    height: 50%;
+}
+
+.popup .pnl-wrapper{
+    z-index: 49;
+}
+
+.card-details-pnl{
+    border-radius: 0 0 0px 5px!important;
+}
+
+.table-header-pnl{
+    border-radius: 5px 0px 0 0!important;
+}
+
+.popup .table-header{
+    font-size: 2em;
+}
+
+.popup .titleStyle {
+    -webkit-text-stroke-width: unset;
+    -webkit-text-stroke-color: unset;
+}

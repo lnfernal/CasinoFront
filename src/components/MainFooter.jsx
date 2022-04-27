@@ -3,13 +3,13 @@ import { Carousel } from 'react-responsive-carousel';
 import AliceCarousel from 'react-alice-carousel';
 import {useEffect, useState} from "react";
 import "react-alice-carousel/lib/alice-carousel.css";
-import PercentVariations from "./UI/PercentVariations";
+import Variations from "./UI/Variations";
 import {helpFunc} from "../utils/helpFunc";
 export default function MainFooter (props){
     useEffect(()=> {
         loadGameData();
     },[])
-    const {debug} = props;
+    const {debug, symbol = "%"} = props;
     const help = helpFunc();
     const defaultValues = {
         bacarra: 0,
@@ -66,15 +66,15 @@ export default function MainFooter (props){
             >
                 <div style={styleStatWrapper}>
                     <p style={nameStyle}>Bacarra: </p>
-                    <PercentVariations value={pnlList.bacarra} showArrow={true}/>
+                    <Variations value={pnlList.bacarra} showArrow={true}/>
                 </div>
                 <div style={styleStatWrapper}>
                     <p style={nameStyle}>Blackjack: </p>
-                    <PercentVariations value={pnlList.blackjack} showArrow={true}/>
+                    <Variations value={pnlList.blackjack} showArrow={true}/>
                 </div>
                 <div style={styleStatWrapper}>
                     <p style={nameStyle}>Roulette: </p>
-                    <PercentVariations value={pnlList.roulette} showArrow={true}/>
+                    <Variations value={pnlList.roulette} showArrow={true}/>
                 </div>
             </AliceCarousel>
         </div>

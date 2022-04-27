@@ -15,7 +15,7 @@ export default function AvailableGames (props) {
     },[])
 
     const generatePopup = (id) => {
-        setPop(<GameCard gameId={id} debug={true} popup={true}/>)
+        setPop(<GameCard gameId={id} debug={debug} popup={true} gameStatus={"available"} setPop={setPop}/>)
     }
 
     const loadAvailGameList = () => {

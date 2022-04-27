@@ -40,8 +40,8 @@
 
 .table-card {
     width: 30%;
-    height: 95%;
-    max-width: 32%;
+    height: 100%;
+    max-width: 30%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -52,6 +52,7 @@
 .table-data {
     color: white;
     font-size: 1rem;
+    margin-top: 4%;
 }
 
 .table-data > * {
@@ -61,7 +62,7 @@
     margin: 0 2em;
 }
 .reference {
-    margin: 0 1.6em;
+    margin: 10px 1.6em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,10 +103,21 @@
     justify-content: flex-start;
     max-height: 17vh;
     background-color: #373758;
-    padding: 8px 20px 8px 8px;
+    padding: 8px 20px 40px 8px;
     margin-right: 5px;
     border-radius: 10px;
 }
+
+.banker-list-wrapper .scroll-thumb{
+    height: 40%;
+    margin-left: -4px;
+    background-color: rgb(255 255 255);
+}
+.banker-list-wrapper .scroll-bar {
+    width: 1px;
+    right: -15%;
+}
+
 
 .banker-wrapper{
     overflow: scroll;

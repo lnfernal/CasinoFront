@@ -16,7 +16,7 @@ export default function HistoricView (props) {
     },[])
 
     const generatePopup = (id) => {
-        setPop(<GameCard gameId={id} debug={true} popup={true}/>)
+        setPop(<GameCard gameId={id} debug={debug} popup={true} setPop={setPop}/>)
     }
 
     const loadHotGameList = () => {

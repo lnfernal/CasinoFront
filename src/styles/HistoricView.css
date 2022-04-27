@@ -18,7 +18,7 @@
     flex-wrap: nowrap;
     align-content: flex-start;
     align-items: flex-start;
-    padding: 2em 0px;
+    padding: 0.5em 0px;
     overflow: scroll;
     max-height: 30vh;
 }
