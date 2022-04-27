@@ -87,6 +87,7 @@ export default function GameCard(props) {
                 let newFakeBet = {date: today, heure: betHour, mise: help.randNumber(50, 350)+" €", pnl: <Variations value={help.randNumber(-100, 100)} symbol="€"/>, pourcent:<Variations value={help.randNumber(-10, 10, true)}/>}
                 localBetsList.push(newFakeBet);
             }
+            localValue.active = help.randNumber(0, 1);
             localValue.bankersList = localBankerList;
             localValue.betsList = localBetsList;
             localValue.minEntry = help.randNumber(50, 100);
@@ -114,7 +115,7 @@ export default function GameCard(props) {
         alignItems: "center",
         justifyContent: "space-between",
         alignContent: "space-between",
-        marginTop: "20px",
+        marginTop: "15px",
     }
     const backImageStyle = {
         backgroundImage: "url(" + gameIllus[values.gameType] + ")",
@@ -228,7 +229,7 @@ export default function GameCard(props) {
             }: () => {}}>
 
                 <div className={pnlOpen?"table-header table-header-pnl":"table-header"} style={backGrad[values.gameType]}>
-                    <span className="titleStyle">{help.capitalize(values.gameType)}{true ? <><FiberManualRecordIcon style={{
+                    <span className="titleStyle">{help.capitalize(values.gameType)}{gameStatus ==="live" ? <><FiberManualRecordIcon style={{
                         fill: "green",
                         paddingLeft: "30px"}}/><span style={{fontSize: "0.7em", fontWeight: "700",}}>Actif</span></>:<></>}</span>
                     {values.heatIndex > 80 ? <img src={fire}/> : <></>}
@@ -296,7 +297,8 @@ export default function GameCard(props) {
                                              className="mat-divider mat-divider-horizontal" aria-orientation="horizontal" style={{width: "-webkit-fill-available"}}></div>
                                         <div style={alignElements}>
                                             <span className="shadow" style={{
-                                                marginRight: "20px", backgroundColor:"#373758", padding:"1px 10px", borderRadius:"10px"}}>PNL <Variations value={help.randNumber(-300,300)} symbol={"€"}/></span>
+                                                marginRight: "20px", backgroundColor:"#373758", padding:"1px 10px", borderRadius:"10px",
+                                                display: "flex"}}><span style={{marginRight: "10px"}}>PNL</span> <Variations value={help.randNumber(-300,300)} showArrow={true} symbol={"€"}/></span>
                                             <button className={"mat-button shadow"} style={{display: "flex",fontSize: "1.1em",fontWeight: "900",alignItems: "center",
                                                 justifyContent: "space-between", backgroundColor: "#373758",
                                                 borderColor: "transparent"}} onClick={() => {
@@ -328,7 +330,8 @@ export default function GameCard(props) {
                     </div>
                     {gameStatus !=="live"?
                         <div>
-                            <button className={"mat-button"} onClick={() => {
+                            <button className={"mat-button"} style={{
+                                backgroundColor: "#ff0000a8"}} onClick={() => {
                                 action(gameId)
                             }}>
                                 {gameStatus !=="live"? "S'inscrire": "Entrer"}
@@ -374,16 +377,31 @@ export default function GameCard(props) {
                                             <div><span
                                                 style={titleStyle}>Duree minimum participation: </span> {help.secToFormatted(values.minTime)}
                                             </div>
-                                            <div><span
-                                                style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
-                                            </div>
-                                            <div style={{display: "flex"}}>
-                                                <span style={titleStyle}>Mise min: </span>
-                                                {values.minEntry} €
-                                                <div style={{padding: "0px 10px"}}></div>
-                                                <span style={titleStyle}>Mise max: </span>
-                                                {values.maxEntry} €
-                                            </div>
+                                            {gameStatus !=="live"?
+                                                <>
+                                                    <div><span
+                                                        style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
+                                                    </div>
+                                                    <div className="bet-wrapper">
+                                                        <span>Ma mise</span>
+                                                        <Input defaultValue={betSum} name="bet" onChange={(event) => {setSum(event.target.value)}} symbol={"€"}/>
+                                                    </div>
+                                                    <div style={{display: "flex"}}>
+                                                        <span style={titleStyle}>Mise min: </span>
+                                                        {values.minEntry} €
+                                                        <div style={{padding: "0px 10px"}}></div>
+                                                        <span style={titleStyle}>Mise max: </span>
+                                                        {values.maxEntry} €
+                                                    </div>
+                                                </>
+                                                :<>
+                                                    <div><span
+                                                        style={titleStyle}>Temps restant de la participation: </span> {help.secToFormatted(help.randNumber(300, 3600))}
+                                                    </div>
+                                                    <span className="shadow" style={{
+                                                        marginRight: "20px", backgroundColor:"#373758", padding:"1px 10px", borderRadius:"10px",
+                                                        display: "flex"}}><span style={{marginRight: "10px"}}>PNL</span> <Variations value={help.randNumber(-300,300)} symbol={"€"}/></span>
+                                                </>}
                                         </div>
                                         {popup? bankerList(values.bankersList):<></>}
                                         <HeatIndicator value={values.heatIndex}/>
@@ -405,7 +423,7 @@ export default function GameCard(props) {
                                 </div>
                                 {gameStatus !=="live"?
                                     <div>
-                                        <button className={"mat-button"} onClick={() => {
+                                        <button className={"mat-button"} style={{fontSize: "15px"}} onClick={() => {
                                             action(gameId)
                                         }}>
                                             {gameStatus !=="live"? "S'inscrire": "Entrer"}

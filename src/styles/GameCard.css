@@ -52,7 +52,6 @@
 .table-data {
     color: white;
     font-size: 1rem;
-    margin-top: 4%;
 }
 
 .table-data > * {
@@ -62,7 +61,7 @@
     margin: 0 2em;
 }
 .reference {
-    margin: 10px 1.6em;
+    margin: 3px 1.6em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
