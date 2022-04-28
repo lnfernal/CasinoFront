@@ -1,16 +1,16 @@
-import "../general.css";
+import "../../general.css";
 import {Route, Routes, useNavigate} from "react-router-dom";
-import Background from "./Background";
-import MenuTop from "./MenuTop";
-import InfoCard from "./InfoCard";
-import NavButton from "./UI/NavButton";
-import AvailableGames from "./SubViews/AvailableGames";
+import Background from "../SubComponents/Background";
+import MenuTop from "../SubComponents/MenuTop";
+import InfoCard from "../SubComponents/InfoCard";
+import NavButton from "../UI/NavButton";
+import AvailableGames from "../SubViews/AvailableGames";
 import { useLocation } from 'react-router-dom';
 import {React, useState} from "react";
-import MainFooter from "./MainFooter";
-import LiveGames from "./SubViews/LiveGames";
-import Popup from "./UI/Popup";
-import HistoricView from "./SubViews/HistoricView";
+import MainFooter from "../SubComponents/MainFooter";
+import LiveGames from "../SubViews/LiveGames";
+import Popup from "../UI/Popup";
+import HistoricView from "../SubViews/HistoricView";
 
 const MainView = () => {
     const navigate = useNavigate();

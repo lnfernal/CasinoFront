@@ -1,4 +1,4 @@
-import "../../styles/Popup.css";
+import "../../styles/UI/Popup.css";
 const Popup = (props) => {
     const {children,setShow,layout=undefined} = props;
     return(

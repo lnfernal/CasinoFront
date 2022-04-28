@@ -9,7 +9,7 @@ import TableBarIcon from '@mui/icons-material/TableBar';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import OnHoverScrollContainer from "../../utils/CustomScrollBar";
 import {helpFunc} from "../../utils/helpFunc";
-import "../../styles/GameCard.css";
+import "../../styles/SubComponents/GameCard.css";
 import {React, useEffect, useState} from "react";
 import WebFont from 'webfontloader';
 import Variations from "../UI/Variations";
@@ -27,11 +27,14 @@ export default function GameCard(props) {
             }
         });
         loadGameData();
+        startTimer();
     },[])
     const register = () => {
 
     }
     const help = helpFunc();
+    let [timer, setTimer] = useState(0);
+    const [timeState, setTime] = useState(0);
     const {gameId, action=register, popup=false, debug=false, selectedType="all", gameStatus="available", setPop}         = props;
     const defaultValues = {
         gameType: "bacarra",
@@ -44,7 +47,9 @@ export default function GameCard(props) {
         maxEntry: 0,
         minTime: 0,
         nextGame: 0,
+        timeLeft: 0,
         renew: false,
+        currPnl: 0,
         lastHourPnl: 0,
         lastHalfPnl: 0,
         lastQuarterPnl: 0,
@@ -93,8 +98,11 @@ export default function GameCard(props) {
             localValue.minEntry = help.randNumber(50, 100);
             localValue.maxEntry = help.randNumber(101, 5000);
             localValue.minTime = help.randNumber(300, 3600);
+            localValue.timeLeft = help.randNumber(300, 3600);
+            setTime(localValue.timeLeft);
             localValue.nextGame = help.randNumber(300, 1000);
             localValue.renew = help.randNumber(-10, 10);
+            localValue.currPnl = help.randNumber(-300,300);
             localValue.lastHourPnl = help.randNumber(-10, 10, true);
             localValue.lastHalfPnl = help.randNumber(-10, 10, true);
             localValue.lastQuarterPnl = help.randNumber(-10, 10, true);
@@ -209,15 +217,28 @@ export default function GameCard(props) {
         return <div style={{ ...style, ...thumbStyle }} {...props} />;
     };
 
-    const CustomScrollbars = (props) => (
-        <Scrollbars
-            renderThumbHorizontal={renderThumb}
-            renderThumbVertical={renderThumb}
-            renderTrackVertical={renderTrack}
-            thumbSize={30}
-            {...props}
-        />
-    );
+    const startTimer = () => {
+        timer = setInterval(() => {
+            setTime((timeState) => timeState - 1)
+        }, 1000)
+    }
+    const stopTimer = () => {
+        clearInterval(timer);
+        setTime(0);
+    }
+
+
+    String.prototype.toHMS = function () {
+        var sec_num = parseInt(this, 10); // don't forget the second param
+        var hours   = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+        var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        if (seconds < 10) {seconds = "0"+seconds;}
+        return hours+':'+minutes+':'+seconds;
+    }
 
     if((selectedType !== undefined && selectedType === values.gameType)|| selectedType === "all") {
         return (
@@ -298,7 +319,7 @@ export default function GameCard(props) {
                                         <div style={alignElements}>
                                             <span className="shadow" style={{
                                                 marginRight: "20px", backgroundColor:"#373758", padding:"1px 10px", borderRadius:"10px",
-                                                display: "flex"}}><span style={{marginRight: "10px"}}>PNL</span> <Variations value={help.randNumber(-300,300)} showArrow={true} symbol={"€"}/></span>
+                                                display: "flex"}}><span style={{marginRight: "10px"}}>PNL</span> <Variations value={values.currPnl} showArrow={true} symbol={"€"}/></span>
                                             <button className={"mat-button shadow"} style={{display: "flex",fontSize: "1.1em",fontWeight: "900",alignItems: "center",
                                                 justifyContent: "space-between", backgroundColor: "#373758",
                                                 borderColor: "transparent"}} onClick={() => {
@@ -382,10 +403,6 @@ export default function GameCard(props) {
                                                     <div><span
                                                         style={titleStyle}>Prochain roulement de Bankers: </span> {help.secToFormatted(values.nextGame)}
                                                     </div>
-                                                    <div className="bet-wrapper">
-                                                        <span>Ma mise</span>
-                                                        <Input defaultValue={betSum} name="bet" onChange={(event) => {setSum(event.target.value)}} symbol={"€"}/>
-                                                    </div>
                                                     <div style={{display: "flex"}}>
                                                         <span style={titleStyle}>Mise min: </span>
                                                         {values.minEntry} €
@@ -396,11 +413,11 @@ export default function GameCard(props) {
                                                 </>
                                                 :<>
                                                     <div><span
-                                                        style={titleStyle}>Temps restant de la participation: </span> {help.secToFormatted(help.randNumber(300, 3600))}
+                                                        style={titleStyle}>Temps restant de la participation: </span> {timeState.toString().toHMS()}
                                                     </div>
                                                     <span className="shadow" style={{
                                                         marginRight: "20px", backgroundColor:"#373758", padding:"1px 10px", borderRadius:"10px",
-                                                        display: "flex"}}><span style={{marginRight: "10px"}}>PNL</span> <Variations value={help.randNumber(-300,300)} symbol={"€"}/></span>
+                                                        display: "flex"}}><span style={{marginRight: "10px"}}>PNL</span> <Variations value={values.currPnl} symbol={"€"}/></span>
                                                 </>}
                                         </div>
                                         {popup? bankerList(values.bankersList):<></>}

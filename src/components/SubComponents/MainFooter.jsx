@@ -3,8 +3,8 @@ import { Carousel } from 'react-responsive-carousel';
 import AliceCarousel from 'react-alice-carousel';
 import {useEffect, useState} from "react";
 import "react-alice-carousel/lib/alice-carousel.css";
-import Variations from "./UI/Variations";
-import {helpFunc} from "../utils/helpFunc";
+import Variations from "../UI/Variations";
+import {helpFunc} from "../../utils/helpFunc";
 export default function MainFooter (props){
     useEffect(()=> {
         loadGameData();
