@@ -3,7 +3,7 @@ import "../styles/UI/onHoverStyle.css";
 
 const SCROLL_BOX_MIN_HEIGHT = 20;
 
-export default function CustomScrollDiv({ children, className, ...restProps }) {
+export default function CustomScrollDiv({ children, className, topOverlap=0, ...restProps }) {
     const [hovering, setHovering] = useState(false);
     const [scrollBoxHeight, setScrollBoxHeight] = useState(SCROLL_BOX_MIN_HEIGHT);
     const [scrollBoxTop, setScrollBoxTop] = useState(0);
@@ -70,7 +70,7 @@ export default function CustomScrollDiv({ children, className, ...restProps }) {
         const scrollHostElement = scrollHostRef.current;
         const { scrollTop, clientHeight, scrollHeight, offsetHeight } = scrollHostElement;
         const scrollThumbPercentage = clientHeight/ scrollHeight;
-        setScrollBoxHeight(scrollThumbPercentage* clientHeight);
+        setScrollBoxHeight(scrollThumbPercentage* clientHeight - topOverlap);
         let newTop =
             (parseInt(scrollTop, 10) / parseInt(scrollHeight, 10)) * offsetHeight;
         // newTop = newTop + parseInt(scrollTop, 10);

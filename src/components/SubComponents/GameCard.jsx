@@ -364,7 +364,7 @@ export default function GameCard(props) {
                 {popup && values.betsList.length > 0 && gameStatus === "live" ?
 
                     <div className={pnlOpen ? "pnl-wrapper" : "pnl-wrapper closed"}>
-                        <OnHoverScrollContainer>
+                        <OnHoverScrollContainer topOverlap={122}>
                         <Table bets={values.betsList}/>
                         </OnHoverScrollContainer>
                     </div>
