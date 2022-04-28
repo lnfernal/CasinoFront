@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import MainView from "./components/MainView";
+import MainView from "./components/Views/MainView";
 import { Component, React } from "react";
 
 class AppRouter extends Component {

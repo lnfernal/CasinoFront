@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {helpFunc} from "../../utils/helpFunc";
-import "../../styles/HistoricView.css";
+import "../../styles/SubViews/HistoricView.css";
 import GameCard from "../SubComponents/GameCard";
 import EventList from "../UI/EventList";
 import Graphics from "../UI/Graphics";

@@ -1,8 +1,8 @@
-import logo from "../assets/pictures/cazzLogo.png";
-import defAvatar from "../assets/pictures/no-pic.png";
+import logo from "../../assets/pictures/cazzLogo.png";
+import defAvatar from "../../assets/pictures/no-pic.png";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { grey } from '@mui/material/colors';
-import "../styles/MenuTop.css";
+import "../../styles/SubComponents/MenuTop.css";
 
 export default function MenuTop() {
     const user_menu_wrapper = {

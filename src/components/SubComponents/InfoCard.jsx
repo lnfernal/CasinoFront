@@ -1,4 +1,4 @@
-import "../styles/InfoCard.css"
+import "../../styles/SubComponents/InfoCard.css"
 export default function InfoCard(props){
     const {cardId=undefined, icon, infoName, data, symbol=undefined} = props;
     let localIcon = icon;
