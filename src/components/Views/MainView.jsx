@@ -301,9 +301,9 @@ const MainView = (props) => {
                         </div>
                         <Routes>
                             <Route path={"/"} element={<AvailableGames setPop={setPop} debug={debug}/>}/>
-                            <Route path={"/dashboard/available-games"} element={<AvailableGames setPop={setPop} debug={debug}/>}/>
-                            <Route path={"/dashboard/live-games"} element={<LiveGames setPop={setPop} debug={debug}/>}/>
-                            <Route path={"/dashboard/historical"} element={<HistoricView setPop={setPop} debug={debug}/>}/>
+                            <Route path={"/available-games"} element={<AvailableGames setPop={setPop} debug={debug}/>}/>
+                            <Route path={"/live-games"} element={<LiveGames setPop={setPop} debug={debug}/>}/>
+                            <Route path={"/historical"} element={<HistoricView setPop={setPop} debug={debug}/>}/>
                         </Routes>
                     </div>
                 </div>

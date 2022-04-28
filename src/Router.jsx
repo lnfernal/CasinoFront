@@ -10,9 +10,9 @@ class AppRouter extends Component {
         return (
             <BrowserRouter>
                             <Routes>
-                                <Route path="*" element={<Login debug={debug}/>}/>
+                                <Route path="/" element={<Login debug={debug}/>}/>
                                 <Route path="/register" element={<Register debug={debug}/>}/>
-                                <Route path="/dashboard" element={<MainView debug={debug}/>}/>
+                                <Route path="/dashboard/*" element={<MainView debug={debug}/>}/>
                             </Routes>
             </BrowserRouter>);
     }
