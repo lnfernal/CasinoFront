@@ -1,0 +1,38 @@
+.inputFrame {
+    align-items: center;
+    background-color: var(--white);
+    display: flex;
+    max-width: -webkit-fill-available;
+    justify-content: center;
+}
+
+.inputVal {
+    letter-spacing: 0;
+    line-height: 24px;
+    min-height: 45px;
+    min-width: 86px;
+    white-space: nowrap;
+    margin-bottom: 0px;
+}
+
+.showPass {
+    -webkit-text-security: unset!important;
+}
+
+.secure{
+    -webkit-text-security: disc;
+}
+.secure:hover{
+    -webkit-text-security: unset;
+}
+
+.error-text {
+    color: red;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 400;
+    height: 16px;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin-top: 8px;
+    white-space: nowrap;
+}

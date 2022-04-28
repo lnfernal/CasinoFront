@@ -1,5 +1,5 @@
 import {helpFunc} from "../../utils/helpFunc";
-import "../../styles/Table.css";
+import "../../styles/UI/Table.css";
 export default function Table(props){
     const help = helpFunc();
     const {bets = [

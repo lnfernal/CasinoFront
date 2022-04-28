@@ -289,7 +289,7 @@ export default function GameCard(props) {
                                 </div>
                                     <div className="bet-wrapper">
                                         <span>Ma mise</span>
-                                        <Input defaultValue={betSum} name="bet" onChange={(event) => {setSum(event.target.value)}} symbol={"€"}/>
+                                        <Input defaultValue={betSum} type="number" name="bet" onChange={(event) => {setSum(event.target.value)}} symbol={"€"}/>
                                     </div>
                                 <div style={{display: "flex"}}>
                                     <span style={titleStyle}>Mise min: </span>

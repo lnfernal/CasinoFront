@@ -1,0 +1,79 @@
+.login-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    height: 100%;
+}
+.login-wrapper form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: -webkit-fill-available;
+}
+.login-wrapper form >*{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.login-wrapper .body-wrapper{
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.login-wrapper form > *{
+    width: 100%;
+}
+.login-wrapper form > * > *{
+    width: 100%;
+}
+.login-wrapper input{
+    width: -webkit-fill-available;
+    padding: 15px;
+    border-radius: 13px;
+    font-family: 'Montserrat';
+}
+.login-wrapper p{
+    width: 100%;
+    justify-content: center;
+    width: 100%;
+}
+.login-wrapper button{
+    padding: 12px 0px;
+    margin-top: 40px;
+    border-radius: 15px;
+    font-size: 18px!important;
+    font-weight: 600;
+}
+.register form> *{
+    margin:5px 0px
+}
+
+.register p{
+    margin: 0px;
+}
+.ic-1 {
+    background-image: url(https://anima-uploads.s3.amazonaws.com/projects/61828a5312c01fb2008ac24d/releases/618a30d567d1b764d5a64e80/img/eye@2x.svg);
+    background-size: 100% 100%;
+    height: 24px;
+    width: 24px;
+    transition: transform .2s;
+    position: absolute;
+    right: 37.5%;
+
+}
+.ic-1:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}

@@ -1,0 +1,11 @@
+.basic-tab{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #292b44;
+    justify-content: space-around;
+    align-items: center;
+    height: max-content;
+    align-content: center;
+    border-radius: 20px;
+}
